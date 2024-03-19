@@ -1,6 +1,7 @@
 use std::io;
 use std::io::Write;
 mod add;
+use std::any::type_name;
 
 #[derive(Debug)]
 struct Task {
@@ -22,7 +23,7 @@ fn main() {
 
     let mut tasks : Vec<Task> = Vec::new();
 
-    while true{
+    loop{
 
         println!("Olá, qual operação deseja fazer?\n");
         println!("1 - adicionar tarefa\n");
@@ -32,24 +33,29 @@ fn main() {
 
         let mut operation = String::new();
 
-        
-        io::stdin().read_line(&mut operation).unwrap();
-        
+        io::stdin()
+            .read_line(&mut operation)
+            .expect("couldnt read value");
+
+        operation = operation.trim().to_string();
+
         if operation == "1" {
             
-            println!("Digite a descricao da sua tarefa:");
-            io::stdout().flush().expect("Cannot flush stdout");
-            
+            println!("Digite a descricao da sua tarefa:");           
             
             let mut content = String::new();
+            io::stdin()
+            .read_line(&mut content)
+            .expect("couldnt read value");
             
             let mut tsk = creat_task(content);
             tasks.push(tsk);
-        }
-        if operation == "2" {
+
+        } else if operation == "2" {
+
             println!("{:?}", tasks);
-        }
-        if operation == "3" {
+            
+        } else if operation == "3" {
             break;
         }
 
