@@ -1,12 +1,7 @@
 use std::io::{self, Read};
-
-use serde::{Deserialize, Serialize};
-use serde_json::to_string;
-
-#[derive(Serialize, Deserialize)]
 struct Task {
     content: String,
-    done: Bool
+    done: bool
 }
 
 
