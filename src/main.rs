@@ -62,24 +62,38 @@ fn main() {
         } else if operation == "3" {
             println!("Qual tarefa você deseja completar?");
 
-            let mut tarefa : String = String::new();
+            let mut task_index : String = String::new();
 
             io::stdin()
-            .read_line(&mut tarefa)
+            .read_line(&mut task_index)
             .expect("could not read index");
 
-            let index : usize = tarefa.trim().parse().expect("invalid input");
+            let index : usize = task_index.trim().parse().expect("invalid input");
 
             tasks[index].done = true;
 
             println!("{:#?}", tasks[index]);
 
         } else if operation == "4" {
-            
+            println!("Qual tarefa você deseja completar?");
 
+            let mut task_index : String = String::new();
 
+            io::stdin()
+            .read_line(&mut task_index)
+            .expect("could not read index");
 
+            let index : usize = task_index.trim().parse().expect("invalid input");
 
+            println!("Qual o novo conteúdo da tarefa?");
+
+            let mut new_content : String = String::new();
+
+            io::stdin()
+            .read_line(&mut new_content)
+            .expect("could not read index");
+
+            tasks[index].content = new_content;
 
         } else if operation == "5" {
             break;
