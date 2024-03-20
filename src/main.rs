@@ -28,7 +28,9 @@ fn main() {
         println!("Olá, qual operação deseja fazer?\n");
         println!("1 - adicionar tarefa\n");
         println!("2 - ler tarefas adicionadas\n");
-        println!("3 - sair\n");
+        println!("3 - Concluir Tarefa\n");
+        println!("4 - Editar tarefa\n");
+        println!("5 - sair\n");
 
 
         let mut operation = String::new();
@@ -53,10 +55,34 @@ fn main() {
 
         } else if operation == "2" {
 
-            println!("{:?}", tasks);
-            
+            println!("{:#?}", tasks);
+
         } else if operation == "3" {
+            println!("Qual tarefa você deseja completar?");
+
+            let mut tarefa : String = String::new();
+
+            io::stdin()
+            .read_line(&mut tarefa)
+            .expect("could not read index");
+
+            let index : usize = tarefa.trim().parse().expect("invalid input");
+
+            tasks[index].done = true;
+
+            println!("{:#?}", tasks[index]);
+
+        } else if operation == "4" {
+            
+
+
+
+
+
+        } else if operation == "5" {
             break;
+        } else {
+            println!("Operação inválida");
         }
 
 }
