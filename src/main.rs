@@ -6,14 +6,16 @@ use std::any::type_name;
 #[derive(Debug)]
 struct Task {
     content: String,
-    done: bool
+    done: bool,
+    id: usize
 }
 
-fn creat_task(content: String) -> Task{
+fn creat_task(content: String, id: usize) -> Task{
     
     let mut task = Task {
         content: content,
-        done: false
+        done: false,
+        id: id
     };
 
     return task;
@@ -50,7 +52,7 @@ fn main() {
             .read_line(&mut content)
             .expect("couldnt read value");
             
-            let mut tsk = creat_task(content);
+            let mut tsk = creat_task(content, tasks.len());
             tasks.push(tsk);
 
         } else if operation == "2" {
