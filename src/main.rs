@@ -51,7 +51,9 @@ fn main() {
             .read_line(&mut content)
             .expect("couldnt read value");
             
-            let mut tsk = creat_task(content, tasks.len());
+            let content = content.trim();
+
+            let mut tsk = creat_task(content.to_owned(), tasks.len());
             tasks.push(tsk);
 
         } else if operation == "2" {
@@ -92,7 +94,9 @@ fn main() {
             .read_line(&mut new_content)
             .expect("could not read index");
 
-            tasks[index].content = new_content;
+            let new_content = new_content.trim();
+
+            tasks[index].content = new_content.to_owned();
 
         } else if operation == "5" {
             println!("Qual tarefa você deseja excluir?");
