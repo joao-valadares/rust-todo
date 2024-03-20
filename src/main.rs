@@ -1,7 +1,5 @@
 use std::io;
-use std::io::Write;
 mod add;
-use std::any::type_name;
 
 #[derive(Debug)]
 struct Task {
@@ -32,7 +30,8 @@ fn main() {
         println!("2 - ler tarefas adicionadas\n");
         println!("3 - Concluir Tarefa\n");
         println!("4 - Editar tarefa\n");
-        println!("5 - sair\n");
+        println!("5 - Deletar Tarefa\n");
+        println!("6 - sair\n");
 
 
         let mut operation = String::new();
@@ -75,7 +74,7 @@ fn main() {
             println!("{:#?}", tasks[index]);
 
         } else if operation == "4" {
-            println!("Qual tarefa você deseja completar?");
+            println!("Qual tarefa você deseja editar?");
 
             let mut task_index : String = String::new();
 
@@ -96,6 +95,22 @@ fn main() {
             tasks[index].content = new_content;
 
         } else if operation == "5" {
+            println!("Qual tarefa você deseja excluir?");
+
+            let mut task_index : String = String::new();
+
+            io::stdin()
+            .read_line(&mut task_index)
+            .expect("could not read index");
+
+            let index : usize = task_index.trim().parse().expect("invalid input");
+
+            tasks.remove(index);
+
+            println!("{:#?}", tasks);
+
+
+        } else if operation == "6" {
             break;
         } else {
             println!("Operação inválida");
